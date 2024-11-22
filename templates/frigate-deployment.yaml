@@ -19,8 +19,12 @@ spec:
         - name: frigate
           image: ghcr.io/blakeblackshear/frigate:0.14.1-rk
           ports:
-            - containerPort: 8971
-              name: web-ui
+            - containerPort: 5000
+              name: webui
+            - containerPort: 8080
+              name: web
+            - containerPort: 1984
+              name: go2rtc
             - containerPort: 8554
               name: rtsp-feeds
             - containerPort: 8555

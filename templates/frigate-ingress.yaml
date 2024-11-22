@@ -17,4 +17,4 @@ spec:
               service:
                 name: frigate-service
                 port:
-                  number: 8971
+                  number: 5000
