@@ -19,10 +19,10 @@ spec:
         - name: frigate
           image: ghcr.io/blakeblackshear/frigate:0.14.1-rk
           ports:
-            - containerPort: 5000
+            - containerPort: 8971
               name: webui
-            - containerPort: 8080
-              name: web
+            - containerPort: 5000
+              name: webui-no-auth
             - containerPort: 1984
               name: go2rtc
             - containerPort: 8554
