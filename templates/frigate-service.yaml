@@ -4,7 +4,7 @@ metadata:
   name: frigate-service
   namespace: frigate
   annotations:
-    metallb.universe.tf/address-pool: production-public-ips
+    metallb.universe.tf/address-pool: default-pool
 spec:
   type: LoadBalancer
   selector:
