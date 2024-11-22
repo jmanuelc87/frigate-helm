@@ -5,9 +5,8 @@ metadata:
   namespace: frigate
 spec:
   storageClassName: nfs-client
-  resources:
-    requests:
-      storage: 3000Gi
+  capacity:
+    storage: 3000Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
@@ -19,9 +18,8 @@ metadata:
   namespace: frigate
 spec:
   storageClassName: longhorn
-  resources:
-    requests:
-      storage: 10Gi
+  capacity:
+    storage: 10Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
