@@ -10,6 +10,8 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/frigate"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -23,3 +25,5 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/config"
