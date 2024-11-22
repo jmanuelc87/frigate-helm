@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frigate
+  namespace: frigate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frigate
+  template:
+    metadata:
+      annotations:
+
+      labels:
+        app: frigate
+    spec:
+      containers:
+        - name: frigate
+          image: ghcr.io/blakeblackshear/frigate:0.14.1-rk
+          ports:
+            - containerPort: 8971
+              name: web-ui
+            - containerPort: 8554
+              name: rtsp-feeds
+            - containerPort: 8555
+              name: webrtc-tcp
+              protocol: TCP
+            - containerPort: 8555
+              name: webrtc-udp
+              protocol: UDP
+
+          volumeMounts:
+            - mountPath: /media/frigate
+              name: media-volume
+              subPath: frigate-media
+            
+            - mountPath: /config
+              name: config-volume
+              subPath: frigate-config
+
+            - mountPath: /tmp/cache
+              name: tmpfs-volume
+            
+            - mountPath: /dev/shm
+              name: shm-volume
+            
+            - mountPath: /dev/dri
+              name: dev-dri
+            
+            - mountPath: /dev/dma_heap
+              name: dev-dma-heap
+
+            - mountPath: /dev/rga
+              name: dev-rga
+
+            - mountPath: /dev/mpp_service
+              name: dev-mpp-service
+            
+            - mountPath: /etc/localtime
+              name: etc-localtime
+              readOnly: true
+
+          securityContext:
+            priviliged: true
+
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "1"
+            limits:
+              memory: "4096Mi"
+              cpu: "4"
+
+      volumes:
+        - name: media-volume
+          persistentVolumeClaim:
+            claimName: frigate-media-pvc
+
+        - name: config-volume
+          persistentVolumeClaim:
+            claimName: frigate-config-pvc
+        
+        - name: tmpfs-volume
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+
+        - name: shm-volume
+          emptyDir:
+            medium: Memory
+            sizeLimit: 128Mi
+
+        - name: dev-dri
+          hostPath:
+            path: /dev/dri
+        
+        - name: dev-dma-heap
+          hostPath:
+            path: /dev/dma_heap
+
+        - name: dev-rga
+          hostPath:
+            path: /dev/rga
+        
+        - name: dev-mpp-service
+          hostPath:
+            path: /dev/mpp_service
+        
+        - name: etc-localtime
+          hostPath:
+            path: /etc/localtime
