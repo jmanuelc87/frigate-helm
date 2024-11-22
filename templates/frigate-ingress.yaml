@@ -8,13 +8,13 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: "web"
 spec:
   rules:
-    - host: frigate.cluster.local
+    - host: turing-cluster.local
       http:
         paths:
-          - path: /
+          - path: /frigate
             pathType: Prefix
             backend:
               service:
                 name: frigate-service
                 port:
-                  number: 80
+                  number: 5000
