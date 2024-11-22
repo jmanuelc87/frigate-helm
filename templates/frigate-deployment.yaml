@@ -64,7 +64,7 @@ spec:
               readOnly: true
 
           securityContext:
-            priviliged: true
+            privileged: true
 
           resources:
             requests:
