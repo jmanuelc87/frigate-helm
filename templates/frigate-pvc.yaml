@@ -4,7 +4,6 @@ metadata:
   name: frigate-media-pvc
   namespace: frigate
 spec:
-  storageClassName: nfs-client
   accessModes:
     - ReadWriteMany
   resources:
@@ -18,7 +17,6 @@ metadata:
   name: frigate-config-pvc
   namespace: frigate
 spec:
-  storageClassName: longhorn
   accessModes:
     - ReadWriteMany
   resources:
