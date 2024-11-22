@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: frigate-service
   namespace: frigate
+  annotations:
+    metallb.universe.tf/address-pool: production-public-ips
 spec:
   type: LoadBalancer
   selector:
