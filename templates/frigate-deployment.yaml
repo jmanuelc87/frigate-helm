@@ -33,11 +33,9 @@ spec:
           volumeMounts:
             - mountPath: /media/frigate
               name: media-volume
-              subPath: frigate/media
             
             - mountPath: /config
               name: config-volume
-              subPath: frigate/config
 
             - mountPath: /tmp/cache
               name: tmpfs-volume
